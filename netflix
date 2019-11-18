@@ -1,0 +1,12 @@
+#!/bin/bash
+killall firefox-esr > /dev/null
+firefox https://www.netflix.com --devtools &
+echo "Attente ouverture firefox..."
+sleep 10
+echo "Injection JS..."
+xdotool type "while (\$('.profile-link')==null){i=0;}if(\$('.slider-refocus')==null){\$('.profile-link').click()}while(\$('.slider-refocus')==null){i=1;}elt=document.getElementsByClassName('slider-refocus');for(i=0;i<elt.length;++i){if(elt[i].href && elt[i].text.includes(\""
+xdotool type "$1"
+xdotool type "\"))window.location=elt[i].href}"
+xdotool key Return
+xdotool key F12
+xdotool key F11
