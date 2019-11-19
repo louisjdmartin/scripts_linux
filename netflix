@@ -1,14 +1,28 @@
 #!/bin/bash
-killall firefox-esr > /dev/null
-firefox https://www.netflix.com &
-echo "Attente ouverture firefox..."
-sleep 8
-echo "Injection JS..."
-xdotool key ctrl+shift+k
-sleep 1
-xdotool type "while (\$('.profile-link')==null){i=0;}if(\$('.slider-refocus')==null){\$('.profile-link').click()}while(\$('.slider-refocus')==null){i=1;}elt=document.getElementsByClassName('slider-refocus');for(i=0;i<elt.length;++i){if(elt[i].href && elt[i].text.toLowerCase().includes(\""
-xdotool type "$1"
-xdotool type "\".toLowerCase()))window.location=elt[i].href}"
-xdotool key Return
-xdotool key F12
-xdotool key F11
+helpNetflix ()
+{
+  echo "Usage: netflix <search>"
+  echo "Example: netflix \"Food Wars\""
+}
+
+if [ "$1" = "-h" ]
+then
+  helpNetflix
+elif [ -z "$1" ]
+then
+  helpNetflix
+else
+  killall firefox-esr > /dev/null
+  firefox https://www.netflix.com &
+  echo "Attente ouverture firefox..."
+  sleep 8
+  echo "Injection JS..."
+  xdotool key ctrl+shift+k
+  sleep 1
+  xdotool type "while (\$('.profile-link')==null){i=0;}if(\$('.slider-refocus')==null){\$('.profile-link').click()}while(\$('.slider-refocus')==null){i=1;}elt=document.getElementsByClassName('slider-refocus');for(i=0;i<elt.length;++i){if(elt[i].href && elt[i].text.toLowerCase().includes(\""
+  xdotool type "$1"
+  xdotool type "\".toLowerCase()))window.location=elt[i].href}"
+  xdotool key Return
+  xdotool key F12
+  xdotool key F11
+fi
