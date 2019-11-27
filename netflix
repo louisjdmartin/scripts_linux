@@ -20,7 +20,7 @@ else
   echo "Injection JS..."
   xdotool key ctrl+shift+k
   sleep 2
-  xdotool type --delay 60 "while (\$('.profile-link')==null){i=0;}if(\$('.slider-refocus')==null){\$('.profile-link').click()}while(\$('.slider-refocus')==null){i=1;}elt=document.getElementsByClassName('slider-refocus');for(i=0;i<elt.length;++i){if(elt[i].href && elt[i].text.toLowerCase().includes(\""
+  xdotool type --delay 60 "a='slider-refocus';b='.profile-link';while(\$(b)==null){i=0;}if(!\$('.'+a)){\$(b).click()}while(!\$('.'+a)){i=1;}elt=document.getElementsByClassName(a);for(i=0;i<elt.length;++i){if(elt[i].href && elt[i].text.toLowerCase().includes(\""
   xdotool type --delay 60 "$1"
   xdotool type --delay 60 "\".toLowerCase()))window.location=elt[i].href}"
   xdotool key Return
